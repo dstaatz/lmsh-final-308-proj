@@ -15,11 +15,15 @@ typedef struct Maze {
 	int height;
 	int width;
 	int[][] cells;
+	Location * start;
+	Location * end;
 } Maze;
 
 Maze * InitializeMaze(char * fn);
 
-Maze * InitializeMazeEmpty(int width, int height);
+Maze * InitializeMazeEmpty(int width, int height, Location * start, Location * end);
+
+ScanResults * Scan(Maze * m, Location * l);
 
 void PrintMaze(Maze * m);
 

@@ -23,7 +23,7 @@ typedef struct ScanResults {
 	int E;
 	int S;
 	int W;
-	Location * location;
+	Location * l;
 } ScanResults;
 
 
