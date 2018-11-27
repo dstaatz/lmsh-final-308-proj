@@ -7,10 +7,10 @@
 
 // Include I/O capability and our header files
 #include <stdio.h>
-#include "manager.h"
-#include "robot.h"
-#include "maze.h"
+
 #include "types.h"
+#include "maze.h"
+#include "robot.h"
 
 void print_usage()
 {
