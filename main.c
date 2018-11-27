@@ -19,4 +19,13 @@ int main(int argc, const char * argv[]) {
     print_usage();
     return 0;
   }
+  else
+  {
+    const char * fileName = argv[1];
+    FILE * fp_read = fopen(fileName, "r");
+    char buffer[101];
+    // Do stuff with the file
+    fclose(fp_read);
+    return 0;
+  }
 }
