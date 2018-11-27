@@ -12,11 +12,11 @@
 #include "types.h"
 
 typedef struct Maze {
-	int height;
-	int width;
-	int[][] cells;
-	Location * start;
-	Location * end;
+  int height;
+  int width;
+  int[][] cells;
+  Location * start;
+  Location * end;
 } Maze;
 
 Maze * InitializeMaze(char * fn);

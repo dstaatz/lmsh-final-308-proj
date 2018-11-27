@@ -13,24 +13,23 @@
 #define FALSE 0
 
 typedef struct Location {
-	int posX;
-	int posY;
+  int posX;
+  int posY;
 } Location;
 
 
 typedef struct ScanResults {
-	int N;
-	int E;
-	int S;
-	int W;
-	Location * l;
+  int N;
+  int E;
+  int S;
+  int W;
+  Location * l;
 } ScanResults;
 
 
 typedef struct Path {
-	Location current;
-	struct Path * next;
+  Location current;
+  struct Path * next;
 } Path;
-
 
 #endif /* types_h */

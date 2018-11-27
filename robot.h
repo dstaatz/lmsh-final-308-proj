@@ -12,16 +12,20 @@
 #include "maze.h"
 
 typedef struct Robot {
-        Maze * m;
-        Location * l;
-	int[][] values;
-        Path * p;
-} Manager;
+  Maze * m;
+  Location * l;
+  int[][] values;
+  Path * p;
+} Robot;
 
-void UpdateValues(Robot * r, ScanResults * s);
+Robot * InitalizeRobot(Maze * m);
 
-void FloodFill(Robot * r, Location * end);
+void UpdateRobotMaze(Robot * r, ScanResults * s);
+
+void FloodFill(Robot * r);
 
 void MoveRobot(Robot * r);
+
+void PrintRobotPath(Robot * r);
 
 #endif /* robot_h */
