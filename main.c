@@ -5,27 +5,48 @@
 // Created by Dylan Staatz and Trey Schmidt
 //
 
+// Include I/O capability and our header files
 #include <stdio.h>
+#include "manager.h"
+#include "robot.h"
+#include "maze.h"
+#include "types.h"
 
-void print_usage() {
+void print_usage()
+{
   printf("Error: Incorrect input.\n\n");
   printf("Usage:\n");
   printf("./main \"FileNameOfMaze.txt\" \n");
 }
 
-int main(int argc, const char * argv[]) {
+int main(int argc, const char * argv[])
+{
   if (argc != 2)
   {
     print_usage();
     return 0;
   }
-  else
+
+  // Initialization
+  const char * fileName = argv[1];
+  Maze * ActualMaze = InitializeMaze(fileName);
+  Maze * RobotMaze = InitializeEmptyMaze(ActualMaze->height, ActualMaze->width, ActualMaze->start, ActualMaze->end)
+  Robot * BillyEugene = InitalizeRobot(RobotMaze);
+
+  // Run the loop
+  while(BillyEugene->location != ActualMaze->end)
   {
-    const char * fileName = argv[1];
-    FILE * fp_read = fopen(fileName, "r");
-    char buffer[101];
-    // Do stuff with the file
-    fclose(fp_read);
-    return 0;
+    // Scan
+    ScanResults * s = Scan(ActualMaze, BillyEugene->location);
+    // Update Robot knowledge of walls
+    UpdateRobotMaze(BillyEugene, s);
+    // FloodFill to update Robot
+    FloodFill(BillyEugene);
+    // Move Robot
+    MoveRobot(BillyEugene);
   }
+
+  // PrintRobotPath
+  PrintRobotPath(BillyEugene);
+  return 0;
 }
