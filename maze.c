@@ -8,6 +8,7 @@
 #include <stdio.h>
 
 #include "maze.h"
+#include "types.h"
 
 Maze * InitializeMaze(char * fn)
 {
@@ -22,7 +23,17 @@ Maze * InitializeMaze(char * fn)
   }
 
 
-Maze * InitializeMazeEmpty(int width, int height);
+Maze * InitializeMazeEmpty(int width, int height, Location * start, Location * end)
+{
+  int[][] arrayOfCells = new int[width][height];
+  Maze * emptyMaze = malloc(sizeof(Maze));
+  emptyMaze->height = height;
+  emptyMaze->width = width;
+  emptyMaze->cells = arrayOfCells;
+  emptyMaze->start = start;
+  emptyMaze->end = end;
+  return emptyMaze;
+}
 
 void PrintMaze(Maze * m);
 

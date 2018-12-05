@@ -30,7 +30,7 @@ int main(int argc, const char * argv[])
   // Initialization
   const char * fileName = argv[1];
   Maze * ActualMaze = InitializeMaze(fileName);
-  Maze * RobotMaze = InitializeEmptyMaze(ActualMaze->height, ActualMaze->width, ActualMaze->start, ActualMaze->end)
+  Maze * RobotMaze = InitializeEmptyMaze(ActualMaze->height, ActualMaze->width, ActualMaze->start, ActualMaze->end);
   Robot * BillyEugene = InitalizeRobot(RobotMaze);
 
   // Run the loop
