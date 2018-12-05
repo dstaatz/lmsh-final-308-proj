@@ -29,8 +29,12 @@ typedef struct ScanResults {
 
 
 typedef struct Path {
-  Location current;
+  Location * current;
   struct Path * next;
 } Path;
+
+Path * add(Path * p, Location * loc);
+
+/* Path * append(Path * head, Location * loc); */
 
 #endif /* types_h */
