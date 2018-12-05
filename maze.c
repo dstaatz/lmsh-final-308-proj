@@ -5,6 +5,10 @@
 // Created by Dylan Staatz and Trey Schmidt
 //
 
+#include <stdio.h>
+
+#include "maze.h"
+
 Maze * InitializeMaze(char * fn)
 {
     FILE * fp_read = fopen(fn ,"r");

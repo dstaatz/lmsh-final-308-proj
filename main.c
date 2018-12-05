@@ -34,7 +34,7 @@ int main(int argc, const char * argv[])
   Robot * BillyEugene = InitalizeRobot(RobotMaze);
 
   // Run the loop
-  while(BillyEugene->location != ActualMaze->end)
+  while(!lociseq(BillyEugene->location, ActualMaze->end))
   {
     // Scan
     ScanResults * s = Scan(ActualMaze, BillyEugene->location);

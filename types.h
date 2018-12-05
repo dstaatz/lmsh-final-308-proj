@@ -17,6 +17,7 @@ typedef struct Location {
   int posY;
 } Location;
 
+int lociseq(Location * loc1, Location * loc2);
 
 typedef struct ScanResults {
   int N;
