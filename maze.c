@@ -35,6 +35,11 @@ Maze * InitializeMazeEmpty(int width, int height, Location * start, Location * e
   return emptyMaze;
 }
 
+ScanResults * Scan(Maze * m, Location * l)
+{
+  ScanResults * result = malloc(sizeof(ScanResults))
+}
+
 void PrintMaze(Maze * m);
 
 
