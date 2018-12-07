@@ -11,7 +11,7 @@
 #include "types.h"
 
 // Method for initalizing the "master" maze from the name of a file
-Maze * InitializeMaze(const char * fn)
+Maze * InitializeMaze(char * fn)
 {
   // Open file to read and allocate memory for the maze
   FILE * fp_read = fopen(fn ,"r");
@@ -45,13 +45,11 @@ Maze * InitializeMaze(const char * fn)
       {
         startLoc->posX = j;
         startLoc->posY = i;
-        mazeCells[i][j] = 0;
       }
       else if (line[j] == 'E')
       {
         endLoc->posX = j;
 	endLoc->posY = i;
-	mazeCells[i][j] = 0;
       }
       // Increment the row
       i = i + 1;
@@ -92,24 +90,7 @@ void PrintMaze(Maze * m)
 {
   int i = 0;
   int j = 0;
-  int startI;
-  int startJ;
-  int endI;
-  int endJ;
-  startI = m->start->posY;
-  startJ = m->start->posX;
-  endI = m->end->posY;
-  endJ = m->end->posX;
-  for (i = 0; i < m->height; i++)
-  {
-    for (j = 0; j < m->width; j++)
-    {
-      if (i == startI && j == startJ) printf('S');
-      else if (i == endI && j == endJ) printf('E');
-      else if (m->cells[i][j] == '1') printf("X");
-      else if (m->cells[i][j] == '0') printf(" ");
-    }
-  }
+  
 }
 
 
