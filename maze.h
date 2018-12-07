@@ -19,7 +19,7 @@ typedef struct Maze {
   Location * end;
 } Maze;
 
-Maze * InitializeMaze(char * fn);
+Maze * InitializeMaze(const char * fn);
 
 Maze * InitializeMazeEmpty(int width, int height, Location * start, Location * end);
 
