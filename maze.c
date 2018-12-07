@@ -10,19 +10,63 @@
 #include "maze.h"
 #include "types.h"
 
+// Method for initalizing the "master" maze from the name of a file
 Maze * InitializeMaze(char * fn)
 {
-    FILE * fp_read = fopen(fn ,"r");
-    char buffer[101];
-    // Do stuff with the file
-    while (fgets(buffer, 101, fn) != NULL)
-    {
+  // Open file to read and allocate memory for the maze
+  FILE * fp_read = fopen(fn ,"r");
+  Maze * mazeResult = malloc(sizeof(Maze));
+  // Variables to hold info
+  char line[101];
+  int width;
+  int height;
+  int i = 0;
+  int j = 0;
+  // Scan the width and height, start making our mazeResult and cells
+  fscanf(fp_read, "%d %d", &width, &height);
+  mazeResult->width = width;
+  mazeResult->height = height;
 
+  Location * startLoc = malloc(sizeof(Location));
+  Location * endLoc = malloc(sizeof(Location));
+
+  int mazeCells[height][width];
+  // Throw away line
+  fgets(line, 101, fp_read);
+
+  // Do stuff with the file
+  while (fgets(line, 101, fp_read) != NULL)
+  {
+    for (j = 0; j < width; j++)
+     {
+      if (line[j] == 'X') mazeCells[i][j] = 1;
+      else if (line[j] == ' ') mazeCells[i][j] = 0;
+      else if (line[j] == 'S')
+      {
+        startLoc->posX = j;
+        startLoc->posY = i;
+      }
+      else if (line[j] == 'E')
+      {
+        endLoc->posX = j;
+	endLoc->posY = i;
+      }
+      // Increment the row
+      i = i + 1;
     }
-    fclose(fp_read);
   }
 
+  mazeResult->cells = mazeCells;
+  mazeResult->start = startLoc;
+  mazeResult->end = endLoc;
 
+  fclose(fp_read);
+
+  return mazeResult;
+
+  }
+
+// Method for initalizing an empty maze by taking in 4 parameters
 Maze * InitializeMazeEmpty(int width, int height, Location * start, Location * end)
 {
   int[][] arrayOfCells = new int[width][height];
@@ -35,11 +79,17 @@ Maze * InitializeMazeEmpty(int width, int height, Location * start, Location * e
   return emptyMaze;
 }
 
+// Method the robot will use to scan the four walls around it
 ScanResults * Scan(Maze * m, Location * l)
 {
   ScanResults * result = malloc(sizeof(ScanResults))
 }
 
-void PrintMaze(Maze * m);
+// Method to print a maze
+void PrintMaze(Maze * m)
+{
+  int i = 0;
+  int j = 0;
+}
 
 
