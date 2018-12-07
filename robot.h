@@ -11,10 +11,11 @@
 #include "types.h"
 #include "maze.h"
 
+
 typedef struct Robot {
   Maze * m;
   Location * l;
-  int[][] values;
+  int[MAX_HEIGHT][MAX_WIDTH] values;
   Path * p;
 } Robot;
 

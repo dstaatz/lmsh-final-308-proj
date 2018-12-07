@@ -11,10 +11,13 @@
 
 #include "types.h"
 
+#define MAX_WIDTH 100
+#define MAX_HEIGHT 100
+
 typedef struct Maze {
   int height;
   int width;
-  int[][] cells;
+  int[MAX_HEIGHT][MAX_WIDTH] cells;
   Location * start;
   Location * end;
 } Maze;
