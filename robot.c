@@ -100,6 +100,7 @@ void FloodFill(Robot * r) {
     }
 }
 
+
 // Check all directions and move
 // to the one with the lowest value
 void MoveRobot(Robot * r) {
@@ -108,19 +109,30 @@ void MoveRobot(Robot * r) {
     int i; int j;
     int val;
 
-    j = s->l->posx + delta[minDir][0];
-    i = s->l->posy + delta[minDir][1];
+    j = r->l->posx + delta[minDir][0];
+    i = r->l->posy + delta[minDir][1];
 
     val = r->values[i][j];
     if (val < min) {
-        
+        minDir = 0;
+        min = val;
     }
     for (int a = 1; a < 4; a++) {
-        
+        j = r->l->posx + delta[a][0];
+        i = r->l->posy + delta[a][1];
+
+        val = r->values[i][j];
+        if (val < min) {
+            minDir = a;
+            min = val;
+        }
     }
 
-
+    // Move in the minimum direction
+    r->l->posx += delta[minDir][0];
+    r->l->posy += delta[minDir][1];
 }
+
 
 void PrintRobotPath(Robot * r);
 
