@@ -4,7 +4,7 @@
 #include "types.h"
 
 
-int main(int argc, const char * argv[])
+/* int main(int argc, const char * argv[])
 {
   const char * fn = argv[1];
   Maze * ActualMaze = InitializeMaze(fn);
@@ -13,5 +13,4 @@ int main(int argc, const char * argv[])
   printf("\n");
   PrintMaze(emptyMaze);
   return 0;
-}
-
+} */

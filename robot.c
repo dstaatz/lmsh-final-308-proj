@@ -5,13 +5,15 @@
 // Created by Dylan Staatz and Trey Schmidt
 //
 
+#include <stdlib.h>
+#include <stdio.h>
 
 #include "maze.h"
 #include "types.h"
 #include "robot.h"
 
 
-int delta[][] = {
+int delta[][2] = {
     { 0, -1 }, // up
     { -1, 0 }, // left
     { 0, 1 }, // down
@@ -32,29 +34,29 @@ void UpdateRobotMaze(Robot * r, ScanResults * s){
     int i; int j;
 
     // North, up, (0, -1)
-    j = s->l->posx + delta[0][0];
-    i = s->l->posy + delta[0][1];
+    j = s->l->posX + delta[0][0];
+    i = s->l->posY + delta[0][1];
     r->m->cells[i][j] = s->N;
 
     // West, left, (-1, 0)
-    j = s->l->posx + delta[1][0];
-    i = s->l->posy + delta[1][1];
+    j = s->l->posX + delta[1][0];
+    i = s->l->posY + delta[1][1];
     r->m->cells[i][j] = s->W;
 
     // South, down, (0, 1)
-    j = s->l->posx + delta[2][0];
-    i = s->l->posy + delta[2][1];
+    j = s->l->posX + delta[2][0];
+    i = s->l->posY + delta[2][1];
     r->m->cells[i][j] = s->S;
 
     // East right, (1, 0)
-    j = s->l->posx + delta[3][0];
-    i = s->l->posy + delta[3][1];
+    j = s->l->posX + delta[3][0];
+    i = s->l->posY + delta[3][1];
     r->m->cells[i][j] = s->E;
 }
 
 
 void FloodFill(Robot * r) {
-
+    int x; int y;
     int newValue;
 
     Location * goal = r->m->start;
@@ -109,8 +111,8 @@ void MoveRobot(Robot * r) {
     int i; int j;
     int val;
 
-    j = r->l->posx + delta[minDir][0];
-    i = r->l->posy + delta[minDir][1];
+    j = r->l->posX + delta[minDir][0];
+    i = r->l->posY + delta[minDir][1];
 
     val = r->values[i][j];
     if (val < min) {
@@ -118,8 +120,8 @@ void MoveRobot(Robot * r) {
         min = val;
     }
     for (int a = 1; a < 4; a++) {
-        j = r->l->posx + delta[a][0];
-        i = r->l->posy + delta[a][1];
+        j = r->l->posX + delta[a][0];
+        i = r->l->posY + delta[a][1];
 
         val = r->values[i][j];
         if (val < min) {
@@ -129,17 +131,17 @@ void MoveRobot(Robot * r) {
     }
 
     // Move in the minimum direction
-    r->l->posx += delta[minDir][0];
-    r->l->posy += delta[minDir][1];
+    r->l->posX += delta[minDir][0];
+    r->l->posY += delta[minDir][1];
 }
 
 
 void PrintRobotPath(Robot * r) {
 
-    Location * current = r->p;
+    Location * current = r->p->current;
 
     while(current != NULL) {
-        printf("(%d, %d), ", current->posx, current->posy);
+        printf("(%d, %d), ", current->posX, current->posY);
     }
     printf("/n");
 }

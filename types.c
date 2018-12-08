@@ -5,10 +5,12 @@
 // Created by Dylan Staatz and Trey Schmidt
 //
 
+#include <stdlib.h>
+
 #include "types.h"
 
 int lociseq(Location * loc1, Location * loc2) {
-    return (loc1->posX == loc2->posX) && (loc1->posY == loc2->posY)
+    return (loc1->posX == loc2->posX) && (loc1->posY == loc2->posY);
 }
 
 Path * add(Path * p, Location * loc) {
