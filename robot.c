@@ -134,5 +134,13 @@ void MoveRobot(Robot * r) {
 }
 
 
-void PrintRobotPath(Robot * r);
+void PrintRobotPath(Robot * r) {
+
+    Location * current = r->p;
+
+    while(current != NULL) {
+        printf("(%d, %d), ", current->posx, current->posy);
+    }
+    printf("/n");
+}
 
