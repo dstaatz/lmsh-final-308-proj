@@ -90,6 +90,18 @@ Maze * InitializeMazeEmpty(int width, int height, Location * start, Location * e
   emptyMaze->width = width;
   emptyMaze->start = start;
   emptyMaze->end = end;
+  int i;
+  int j;
+  for (j = 0; j < width; j++)
+  {
+    emptyMaze->cells[0][j] = 1;
+    emptyMaze->cells[height-1][j] = 1;
+  }
+  for (i = 0; i < height; i++)
+  {
+    emptyMaze->cells[i][0] = 1;
+    emptyMaze->cells[i][width-1] = 1;
+  }
   return emptyMaze;
 }
 
