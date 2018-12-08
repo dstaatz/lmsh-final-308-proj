@@ -26,6 +26,7 @@ Robot * InitalizeRobot(Maze * m) {
     newRobot->m = m;
     newRobot->l = m->start;
     newRobot->p = add(NULL, newRobot->l);
+
     return newRobot;
 }
 
@@ -62,7 +63,7 @@ void FloodFill(Robot * r) {
     Location * goal = r->m->start;
 
     for (int i = 0; i < r->m->height; i++) {
-        for (int j = 0; i < r->m->width; j++) {
+        for (int j = 0; j < r->m->width; j++) {
             r->values[i][j] = 99;
         }
     }
@@ -73,11 +74,12 @@ void FloodFill(Robot * r) {
         change = FALSE;
 
         for (int i = 0; i < r->m->height; i++) {
-            for (int j = 0; i < r->m->width; j++) {
+            for (int j = 0; j < r->m->width; j++) {
                 if(lociseq(goal, r->l)) {
                     if (r->values[i][j] > 0) {
                         r->values[i][j] = 0;
                         change = TRUE;
+                        printf("At Goal");
                     }
                 }
                 else if (r->m->cells[i][j] == 0) {
@@ -99,6 +101,13 @@ void FloodFill(Robot * r) {
                 }
             }
         }
+    }
+
+    for (int i = 0; i < r->m->height; i++) {
+        for (int j = 0; j < r->m->width; j++) {
+            printf("%d", r->values[i][j]);
+        }
+        printf("\n");
     }
 }
 
