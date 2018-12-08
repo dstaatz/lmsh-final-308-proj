@@ -75,7 +75,7 @@ void FloodFill(Robot * r) {
 
         for (int i = 0; i < r->m->height; i++) {
             for (int j = 0; j < r->m->width; j++) {
-                if(lociseq(goal, r->l)) {
+                if(goal->posX == j && goal->posY == i) {
                     if (r->values[i][j] > 0) {
                         r->values[i][j] = 0;
                         change = TRUE;
