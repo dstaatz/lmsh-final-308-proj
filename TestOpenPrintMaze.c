@@ -2,7 +2,6 @@
 
 #include "maze.h"
 #include "types.h"
-#include "maze.c"
 
 
 int main(int argc, const char * argv[])

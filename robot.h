@@ -15,7 +15,7 @@
 typedef struct Robot {
   Maze * m;
   Location * l;
-  int[MAX_HEIGHT][MAX_WIDTH] values;
+  int values[MAX_HEIGHT][MAX_WIDTH];
   Path * p;
 } Robot;
 

@@ -30,14 +30,14 @@ int main(int argc, const char * argv[])
   // Initialization
   const char * fileName = argv[1];
   Maze * ActualMaze = InitializeMaze(fileName);
-  Maze * RobotMaze = InitializeEmptyMaze(ActualMaze->height, ActualMaze->width, ActualMaze->start, ActualMaze->end);
+  Maze * RobotMaze = InitializeMazeEmpty(ActualMaze->height, ActualMaze->width, ActualMaze->start, ActualMaze->end);
   Robot * BillyEugene = InitalizeRobot(RobotMaze);
 
   // Run the loop
-  while(!lociseq(BillyEugene->location, ActualMaze->end))
+  while(!lociseq(BillyEugene->l, ActualMaze->end))
   {
     // Scan
-    ScanResults * s = Scan(ActualMaze, BillyEugene->location);
+    ScanResults * s = Scan(ActualMaze, BillyEugene->l);
     // Update Robot knowledge of walls
     UpdateRobotMaze(BillyEugene, s);
     // FloodFill to update Robot
