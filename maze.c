@@ -39,23 +39,38 @@ Maze * InitializeMaze(const char * fn)
   {
     for (j = 0; j < width; j++)
      {
-      if (line[j] == 'X') mazeResult->cells[i][j] = 1;
-      else if (line[j] == ' ') mazeResult->cells[i][j] = 0;
+      if (line[j] == 'X')
+      {
+        mazeResult->cells[i][j] = 1;
+       // printf("%d %d ", i, j);
+       // printf("1\n");
+      }
+      else if (line[j] == ' ')
+      {
+        mazeResult->cells[i][j] = 0;
+	//printf("%d %d ", i, j);
+	//printf("0\n");
+      }
       else if (line[j] == 'S')
       {
         startLoc->posX = j;
         startLoc->posY = i;
         mazeResult->cells[i][j] = 0;
+        //printf("%d %d ", i, j);
+        //printf("S\n");
+
       }
       else if (line[j] == 'E')
       {
         endLoc->posX = j;
 	endLoc->posY = i;
 	mazeResult->cells[i][j] = 0;
+	//printf("%d %d ", i, j);
+        //printf("E\n");
       }
       // Increment the row
-      i = i + 1;
     }
+    i = i + 1;
   }
 
   mazeResult->start = startLoc;
