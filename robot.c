@@ -60,7 +60,7 @@ void FloodFill(Robot * r) {
     int x; int y;
     int newValue;
 
-    Location * goal = r->m->start;
+    Location * goal = r->m->end;
 
     for (int i = 0; i < r->m->height; i++) {
         for (int j = 0; j < r->m->width; j++) {
@@ -79,7 +79,6 @@ void FloodFill(Robot * r) {
                     if (r->values[i][j] > 0) {
                         r->values[i][j] = 0;
                         change = TRUE;
-                        printf("At Goal");
                     }
                 }
                 else if (r->m->cells[i][j] == 0) {
@@ -87,9 +86,9 @@ void FloodFill(Robot * r) {
                         y = i + delta[a][1]; // The next y value to update
                         x = j + delta[a][0]; // The next x value to update
 
-                        if (x >= 0 && x < r->m->height && y >=0 && y < r->m->width) {
-                            if (r->m->cells[x][y] == 0) {
-                                newValue = r->values[x][y] + 1;
+                        if (x >= 0 && x < r->m->width && y >=0 && y < r->m->height) {
+                            if (r->m->cells[y][x] == 0) {
+                                newValue = r->values[y][x] + 1;
 
                                 if (newValue < r->values[i][j]) {
                                     r->values[i][j] = newValue;
@@ -103,12 +102,12 @@ void FloodFill(Robot * r) {
         }
     }
 
-    for (int i = 0; i < r->m->height; i++) {
+/*    for (int i = 0; i < r->m->height; i++) {
         for (int j = 0; j < r->m->width; j++) {
-            printf("%d", r->values[i][j]);
+            printf("%d%d ", r->values[i][j] / 10, r->values[i][j] % 10);
         }
         printf("\n");
-    }
+    }*/
 }
 
 
@@ -142,15 +141,18 @@ void MoveRobot(Robot * r) {
     // Move in the minimum direction
     r->l->posX += delta[minDir][0];
     r->l->posY += delta[minDir][1];
+
+    r->p = add(r->p, r->l);
 }
 
 
 void PrintRobotPath(Robot * r) {
 
-    Location * current = r->p->current;
+    Path * current = r->p;
 
     while(current != NULL) {
-        printf("(%d, %d), ", current->posX, current->posY);
+        printf("(%d, %d), ", current->current->posX, current->current->posY);
+        current = current->next;
     }
     printf("/n");
 }

@@ -27,6 +27,8 @@ int main(int argc, const char * argv[])
     return 0;
   }
 
+  int iterations = 0;
+
   // Initialization
   const char * fileName = argv[1];
   Maze * ActualMaze = InitializeMaze(fileName);
@@ -50,8 +52,11 @@ int main(int argc, const char * argv[])
     // Move Robot
     MoveRobot(BillyEugene);
     printf("Moved robot\n");
+    printf("Robot new location: (%d, %d)", BillyEugene->l->posX, BillyEugene->l->posY);
+    iterations++;
   }
   printf("Robot is at the end\n");
+  printf("Iterations: %d\n", iterations);
   // PrintRobotPath
   PrintRobotPath(BillyEugene);
   printf("Printed robot path\n");
