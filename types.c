@@ -14,16 +14,24 @@ int lociseq(Location * loc1, Location * loc2) {
 }
 
 Path * add(Path * p, Location * loc) {
-    Path * new = malloc(sizeof(Path));
-    new->current = loc;
-    new->next = p;
-    return new;
+    Path * newPath = malloc(sizeof(Path));
+    Location * newLocation = malloc(sizeof(Location));
+    newLocation->posX = loc->posX;
+    newLocation->posY = loc->posY;
+
+    newPath->current = newLocation;
+    newPath->next = p;
+    return newPath;
 }
 
-/*
 Path * append(Path * head, Location * loc) {
     Path * new = malloc(sizeof(Path));
-    new->current = loc;
+
+    Location * newLocation = malloc(sizeof(Location));
+    newLocation->posX = loc->posX;
+    newLocation->posY = loc->posY;
+
+    new->current = newLocation;
     new->next = NULL;
 
     if (head == NULL) {
@@ -39,4 +47,4 @@ Path * append(Path * head, Location * loc) {
 
     return head;
 }
-*/
+

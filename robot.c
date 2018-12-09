@@ -142,7 +142,7 @@ void MoveRobot(Robot * r) {
     r->l->posX += delta[minDir][0];
     r->l->posY += delta[minDir][1];
 
-    r->p = add(r->p, r->l);
+    r->p = append(r->p, r->l);
 }
 
 
@@ -151,9 +151,8 @@ void PrintRobotPath(Robot * r) {
     Path * current = r->p;
 
     while(current != NULL) {
-        printf("(%d, %d), ", current->current->posX, current->current->posY);
+        printf("(%d, %d)\n", current->current->posX, current->current->posY);
         current = current->next;
     }
-    printf("/n");
 }
 

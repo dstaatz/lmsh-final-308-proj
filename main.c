@@ -27,7 +27,6 @@ int main(int argc, const char * argv[])
     return 0;
   }
 
-  int iterations = 0;
 
   // Initialization
   const char * fileName = argv[1];
@@ -35,28 +34,37 @@ int main(int argc, const char * argv[])
   Maze * RobotMaze = InitializeMazeEmpty(ActualMaze->height, ActualMaze->width, ActualMaze->start, ActualMaze->end);
   PrintMaze(ActualMaze);
   Robot * BillyEugene = InitalizeRobot(RobotMaze);
-  printf("Made robot\n");
+  // printf("Made robot\n");
+
   // Run the loop
+  int iterations = 0;
   while(!lociseq(BillyEugene->l, ActualMaze->end))
   {
-    printf("Next iteration:\n");
+    // printf("Next iteration:\n");
+
     // Scan
     ScanResults * s = Scan(ActualMaze, BillyEugene->l);
-    printf("Scanned surroundings\n");
+    // printf("Scanned surroundings\n");
+
     // Update Robot knowledge of walls
     UpdateRobotMaze(BillyEugene, s);
-    printf("Updated the robot's maze\n");
+    // printf("Updated the robot's maze\n");
+
     // FloodFill to update Robot
     FloodFill(BillyEugene);
-    printf("Floodfill\n");
+    // printf("Floodfill\n");
+
     // Move Robot
     MoveRobot(BillyEugene);
-    printf("Moved robot\n");
-    printf("Robot new location: (%d, %d)", BillyEugene->l->posX, BillyEugene->l->posY);
+    // printf("Moved robot\n");
+
+    // printf("Robot new location: (%d, %d)\n", BillyEugene->l->posX, BillyEugene->l->posY);
     iterations++;
   }
-  printf("Robot is at the end\n");
+
+  printf("\nRobot is at the end\n");
   printf("Iterations: %d\n", iterations);
+
   // PrintRobotPath
   PrintRobotPath(BillyEugene);
   printf("Printed robot path\n");

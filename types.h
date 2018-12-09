@@ -35,6 +35,6 @@ typedef struct Path {
 
 Path * add(Path * p, Location * loc);
 
-/* Path * append(Path * head, Location * loc); */
+Path * append(Path * head, Location * loc);
 
 #endif /* types_h */
