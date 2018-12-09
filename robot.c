@@ -148,11 +148,35 @@ void MoveRobot(Robot * r) {
 
 void PrintRobotPath(Robot * r) {
 
+    char printableMaze[r->m->height][r->m->width];
+
+    int i = 0;
+    int j = 0;
+    for (i = 0; i < r->m->height; i++)
+    {
+      for (j = 0; j < r->m->width; j++)
+      {
+        if (r->m->cells[i][j] == 1) printableMaze[i][j] = 'X';
+        else if (r->m->cells[i][j] == 0) printableMaze[i][j] = ' ';
+      }
+    }
+
     Path * current = r->p;
 
     while(current != NULL) {
-        printf("(%d, %d)\n", current->current->posX, current->current->posY);
+        printableMaze[current->current->posY][current->current->posX] = '#';
+        // printf("(%d, %d)\n", current->current->posX, current->current->posY);
         current = current->next;
     }
+
+    for (i = 0; i < r->m->height; i++)
+    {
+      for (j = 0; j < r->m->width; j++)
+      {
+          printf("%c", printableMaze[i][j]);
+      }
+      printf("\n");
+    }
+
 }
 
