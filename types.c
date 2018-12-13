@@ -9,10 +9,12 @@
 
 #include "types.h"
 
+// Method to see if two locations are equal
 int lociseq(Location * loc1, Location * loc2) {
     return (loc1->posX == loc2->posX) && (loc1->posY == loc2->posY);
 }
 
+// Method to add a location to the path the robot has taken
 Path * add(Path * p, Location * loc) {
     Path * newPath = malloc(sizeof(Path));
     Location * newLocation = malloc(sizeof(Location));
@@ -24,6 +26,8 @@ Path * add(Path * p, Location * loc) {
     return newPath;
 }
 
+
+// Method to append a location to the path the robot has taken
 Path * append(Path * head, Location * loc) {
     Path * new = malloc(sizeof(Path));
 

@@ -12,7 +12,7 @@
 #include "types.h"
 #include "robot.h"
 
-
+// Array to move the robot in any direction
 int delta[][2] = {
     { 0, -1 }, // up
     { -1, 0 }, // left
@@ -20,7 +20,7 @@ int delta[][2] = {
     { 1, 0 } // right
 };
 
-
+// Method to initialize a robot
 Robot * InitalizeRobot(Maze * m) {
     Robot * newRobot = malloc(sizeof(Robot));
     newRobot->m = m;
@@ -30,7 +30,7 @@ Robot * InitalizeRobot(Maze * m) {
     return newRobot;
 }
 
-
+// Method to update the robot's maze
 void UpdateRobotMaze(Robot * r, ScanResults * s){
     int i; int j;
 
@@ -55,7 +55,7 @@ void UpdateRobotMaze(Robot * r, ScanResults * s){
     r->m->cells[i][j] = s->E;
 }
 
-
+// Method to carry out the flood fill algorithm
 void FloodFill(Robot * r) {
     int x; int y;
     int newValue;
@@ -101,16 +101,9 @@ void FloodFill(Robot * r) {
             }
         }
     }
-
-/*    for (int i = 0; i < r->m->height; i++) {
-        for (int j = 0; j < r->m->width; j++) {
-            printf("%d%d ", r->values[i][j] / 10, r->values[i][j] % 10);
-        }
-        printf("\n");
-    }*/
 }
 
-
+// Method to move robot
 // Check all directions and move
 // to the one with the lowest value
 void MoveRobot(Robot * r) {
@@ -145,7 +138,7 @@ void MoveRobot(Robot * r) {
     r->p = append(r->p, r->l);
 }
 
-
+// Method to print the robot's path
 void PrintRobotPath(Robot * r) {
 
     char printableMaze[r->m->height][r->m->width];
@@ -165,7 +158,6 @@ void PrintRobotPath(Robot * r) {
 
     while(current != NULL) {
         printableMaze[current->current->posY][current->current->posX] = '#';
-        // printf("(%d, %d)\n", current->current->posX, current->current->posY);
         current = current->next;
     }
 

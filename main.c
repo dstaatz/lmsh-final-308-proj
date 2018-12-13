@@ -34,31 +34,24 @@ int main(int argc, const char * argv[])
   Maze * RobotMaze = InitializeMazeEmpty(ActualMaze->height, ActualMaze->width, ActualMaze->start, ActualMaze->end);
   PrintMaze(ActualMaze);
   Robot * BillyEugene = InitalizeRobot(RobotMaze);
-  // printf("Made robot\n");
 
   // Run the loop
   int iterations = 0;
   while(!lociseq(BillyEugene->l, ActualMaze->end))
   {
-    // printf("Next iteration:\n");
-
     // Scan
     ScanResults * s = Scan(ActualMaze, BillyEugene->l);
-    // printf("Scanned surroundings\n");
 
     // Update Robot knowledge of walls
     UpdateRobotMaze(BillyEugene, s);
-    // printf("Updated the robot's maze\n");
 
     // FloodFill to update Robot
     FloodFill(BillyEugene);
-    // printf("Floodfill\n");
 
     // Move Robot
     MoveRobot(BillyEugene);
-    // printf("Moved robot\n");
 
-    // printf("Robot new location: (%d, %d)\n", BillyEugene->l->posX, BillyEugene->l->posY);
+    // Increment iterations
     iterations++;
   }
 
